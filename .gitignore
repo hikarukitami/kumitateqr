@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.*
+.clasp.json
+.clasprc.json
+Code.gs
+*.xlsx
+*.pdf
+migration-private/

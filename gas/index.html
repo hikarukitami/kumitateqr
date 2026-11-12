@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<base target="_top">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- 読取エンジン：ZXing（QR・マイクロQR・長方形QR・DataMatrix・バーコード等に対応）＋予備の jsQR -->
+
+
+<!-- 図面表示：pdf.js（PDFを描画して、その上に赤枠を重ねる） -->
+
+<!-- 事務用：スキャンPDFを指示書ごとに分ける -->
+
+
+<title>指示書QR作業アプリ</title>
+<link rel="stylesheet" href="https://hikarukitami.github.io/kumitateqr/app.css">
+<script src="https://cdn.jsdelivr.net/npm/zxing-wasm@3.1.6/dist/iife/reader/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head><body>
+<main id="bootMessage" style="font:16px sans-serif;padding:24px;line-height:1.7">画面を読み込んでいます…<noscript>JavaScriptを有効にしてください。</noscript></main>
+<script>
+window.kumitateLoadFailed=function(){var el=document.getElementById('bootMessage');if(el)el.textContent='画面を読み込めませんでした。ネット接続を確認して、このページを再読み込みしてください。';};
+window.addEventListener('error',function(e){if(e.filename && e.filename.indexOf("https://hikarukitami.github.io/kumitateqr/")===0)window.kumitateLoadFailed();});
+</script>
+<script src="https://hikarukitami.github.io/kumitateqr/app.js" onerror="kumitateLoadFailed()"></script>
+</body></html>

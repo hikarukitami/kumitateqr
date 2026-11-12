@@ -51,4 +51,3 @@ GASでは既存 `Code.gs` をそのまま保持し、`index.html` に `gas/index
 
 - [GAS HTML Serviceの制限](https://developers.google.com/apps-script/guides/html/restrictions)
 - [GitHub Pagesの公開元設定](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
-
