@@ -4189,7 +4189,8 @@ async function rlDelete(kind){
 }
 async function rlTrash(){
   const rows=await run('ruleTrashList',officePin);$('#rlTitle').textContent='ごみ箱';$('#rlBack').hidden=false;
-  $('#rlBody').innerHTML='<p>削除した図面・印を復元できます。図面の元PDFは削除していません。</p><div class="rl-list">'+rows.map((r,i)=>`<div class="rl-item"><b>${r.kind==='drawing'?'図面':'印'}：${rlEsc(r.no)} ${rlEsc(r.point)}</b><p>${rlEsc(r.name)}</p><p>${rlEsc(r.date)}</p><button class="btn" data-rl-restore="${i}">復元する</button></div>`).join('')+'</div>'+(rows.length?'':'<p>ごみ箱は空です。</p>');
+  $('#rlBody').innerHTML='<p>削除した図面・印を復元できます。図面の元PDFは削除していません。</p><div class="rl-list">'+rows.map((r,i)=>`<div class="rl-item"><b>${r.kind==='drawing'?'図面':'印'}：${rlEsc(r.no)} ${rlEsc(r.point)}</b><p>${rlEsc(r.name)}</p><p>${rlEsc(r.date)}</p><button class="btn" data-rl-restore="${i}">復元する</button> <button class="btn" data-rl-purge="${i}">完全に削除</button></div>`).join('')+'</div>'+(rows.length?'':'<p>ごみ箱は空です。</p>');
+  document.querySelectorAll('[data-rl-purge]').forEach(b=>b.onclick=()=>rlTask(async()=>{const r=rows[Number(b.dataset.rlPurge)];const what=r.kind==='drawing'?'図面の登録情報・関連するすべての印・Google Driveの元PDF':'選択した印';if(!await rlAsk('「'+r.name+'」を完全に削除します。削除対象：'+what+'。元に戻せません。実行しますか？'))return;const answer=await rlAsk('確認のため「完全削除」と入力してください','text');if(answer!=='完全削除')throw new Error('入力が一致しないため削除しませんでした');await run('purgeRulePermanently',officePin,r.kind,r.no,r.point,r.version,getMe());await rlTrash();loadStdList();rlStatus('完全に削除しました');}));
   document.querySelectorAll('[data-rl-restore]').forEach(b=>b.onclick=()=>rlTask(async()=>{const r=rows[Number(b.dataset.rlRestore)];if(!await rlAsk('「'+r.name+'」を復元しますか？条件に合う案件に再び適用されます。'))return;await run('setRuleDeleted',officePin,r.kind,r.no,r.point,r.version,false,getMe());await rlTrash();loadStdList();rlStatus('復元しました');}));rlStatus('削除した項目 '+rows.length+'件');
 }
 
