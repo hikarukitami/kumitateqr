@@ -913,7 +913,7 @@ window.addEventListener('load', async () => {
 
   try {
     const d = await run('getInitData');
-    staffList = d.staff; managerList = d.managers; paramDefs = d.paramDefs || []; UNITS = d.units || UNITS; serverFeatures = d.features || {};
+    staffList = d.staff; managerList = d.managers; paramDefs = d.paramDefs || []; UNITS = d.units || UNITS;
     $('#staffNames').innerHTML = staffList.map(n => `<option value="${esc(n)}">`).join('');
     $('#managerNames').innerHTML = managerList.map(n => `<option value="${esc(n)}">`).join('');
   } catch (e) {
