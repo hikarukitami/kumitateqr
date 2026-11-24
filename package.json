@@ -2,5 +2,5 @@
   "name": "kumitateqr",
   "version": "1.0.0",
   "private": true,
-  "scripts": { "build": "node scripts/build.cjs", "test": "node tests/build.test.cjs" }
+  "scripts": { "build": "node scripts/build.cjs", "test": "node tests/build.test.cjs && node tests/conditions.test.cjs && node tests/drawing-choice.test.cjs" }
 }
